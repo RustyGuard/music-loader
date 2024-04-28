@@ -14,3 +14,14 @@
 Идёт скачивание...
 Файл сохранён в /home/пользователь/PycharmProjects/MusicLoader/result/Rick Astley - Never Gonna Give You Up (Official Music Video) - Rick Astley.mp3
 ```
+
+# load_by_youtube_link.py
+
+Загрузка песни по ссылке
+
+Пример работы:
+```
+Вставьте url youtube видео: https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley
+Идёт скачивание...
+Файл сохранён в /home/пользователь/PycharmProjects/MusicLoader/result/Never Gonna Give You Up - Rick Astley.mp4
+```
