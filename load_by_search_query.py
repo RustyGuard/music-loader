@@ -6,6 +6,7 @@ from api.load_audio import load_by_video_id
 from api.search_results import search_results
 from input_helpers.input_int import input_int
 from utils.colors import bcolors
+from utils.create_result_folder import create_result_folder
 from utils.disable_logger import disable_pytube_logger
 
 
@@ -33,6 +34,7 @@ def main():
         try:
             print("Идёт скачивание...")
 
+            create_result_folder()
             load_by_video_id(selected_result.video_id, destination_path)
 
             print(bcolors.okgreen(f"Файл сохранён в {destination_path.resolve()}"))

@@ -4,6 +4,7 @@ from pytube import YouTube
 
 from api.load_audio import load_from_youtube_object
 from utils.colors import bcolors
+from utils.create_result_folder import create_result_folder
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
     destination_path = Path("result") / f"{youtube_object.title} - {youtube_object.author}.mp4"
     print("Идёт скачивание...")
 
+    create_result_folder()
     load_from_youtube_object(youtube_object, destination_path)
 
     print(bcolors.okgreen(f"Файл сохранён в {destination_path.resolve()}"))
