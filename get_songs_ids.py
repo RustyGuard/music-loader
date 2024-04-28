@@ -1,18 +1,9 @@
-# This is a sample Python script.
 import json
 import random
 from pathlib import Path
 from time import sleep
 
-from pytube import Search
-
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-def search_results(prompt: str) -> list[str]:
-    s = Search(prompt)
-    return [video.video_id for video in s.results]
+from api.search_results import search_results
 
 
 def load_links(author: str, title: str):
@@ -25,7 +16,7 @@ def load_links(author: str, title: str):
         result_file_contents = {
             'author': author,
             'title': title,
-            'links': result_urls,
+            'links': [result.video_id for result in result_urls],
         }
         json.dump(result_file_contents, result_file)
     sleep_time = random.randint(5, 10)

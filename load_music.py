@@ -7,70 +7,8 @@ from time import sleep
 from pytube import YouTube
 from pytube.exceptions import AgeRestrictedError
 
-
-def load_from_youtube_object(youtube_track: YouTube, destination_path: Path):
-    output = youtube_track.streams.get_audio_only().download()
-    os.rename(output, destination_path)
-
-
-def load_track(youtube_id: str, destination_path: Path, rename_required: bool = False):
-    # this try statement will run if the mp3 url is filled
-    youtube_video_url = f"https://youtu.be/{youtube_id}"
-    try:
-        # creating the YouTube object and passing the the on_progress function
-        audio = YouTube(youtube_video_url)
-
-        # extracting and downloading the audio file
-        output = audio.streams.get_audio_only().download()
-        # this splits the audio file, the base and the extension
-        base, ext = os.path.splitext(output)
-        # this converts the audio file to mp3 file
-        # this renames the mp3 file
-        os.rename(output, destination_path)
-        # popup for dispalying the mp3 downlaoded success message
-        # ressetting the progress bar and the progress label
-        # progress_label.config(text='')
-        # progress_bar['value'] = 0
-        # the except will run when an expected error occurs during downloading
-
-    except:
-        raise
-        # showerror(title='Download Error', message='An error occurred while trying to ' \
-        #                                           'download the MP3\nThe following could ' \
-        #                                           'be the causes:\n->Invalid link\n->No internet connection\n' \
-        #                                           'Make sure you have stable internet connection and the MP3 link is valid')
-        # ressetting the progress bar and the progress label
-        # progress_label.config(text='')
-        # progress_bar['value'] = 0
-
-
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-
-    @staticmethod
-    def header(msg):
-        return bcolors.HEADER + msg + bcolors.ENDC
-
-    @staticmethod
-    def okblue(msg):
-        return bcolors.OKBLUE + msg + bcolors.ENDC
-
-    @staticmethod
-    def okgreen(msg):
-        return bcolors.OKGREEN + msg + bcolors.ENDC
-
-    @staticmethod
-    def warning(msg):
-        return bcolors.WARNING + msg + bcolors.ENDC
-
-    @staticmethod
-    def fail(msg):
-        return bcolors.FAIL + msg + bcolors.ENDC
+from api.load_audio import load_from_youtube_object
+from utils.colors import bcolors
 
 
 def load_all_music():
